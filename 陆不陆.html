@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>随机跳转网站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      font-family: system-ui, -apple-system;
+    }
+
+    button {
+      padding: 16px 28px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      background: #00c6ff;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    button:active {
+      transform: scale(0.96);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+<button onclick="jump()">随机跳转</button>
+
+<script>
+  function jump() {
+    // 生成不重复的三位数字
+    let digits = [];
+    while (digits.length < 3) {
+      let n = Math.floor(Math.random() * 10);
+      if (!digits.includes(n)) {
+        digits.push(n);
+      }
+    }
+
+    // 随机一个字母
+    const letters = "abcdefghijklmnopqrstuvwxyz";
+    const letter = letters[Math.floor(Math.random() * letters.length)];
+
+    // 拼接网址
+    const url =
+      "https://" +
+      digits.join("") +
+      letter + letter +
+      ".com";
+
+    // 跳转
+    window.location.href = url;
+  }
+</script>
+
+</body>
+</html>
